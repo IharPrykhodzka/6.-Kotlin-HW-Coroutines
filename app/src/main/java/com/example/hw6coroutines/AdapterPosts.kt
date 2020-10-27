@@ -5,94 +5,13 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hw6coroutines.itemview.*
 import com.example.hw6coroutines.model.*
 import java.lang.IllegalArgumentException
 
 class AdapterPosts(private val items: List<StandardPost>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    class StandardPostUI(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        val icon: ImageView = itemView.findViewById(R.id.icon)
-        val date: TextView = itemView.findViewById(R.id.date)
-        val author: TextView = itemView.findViewById(R.id.author)
-        val text: TextView = itemView.findViewById(R.id.text)
-        val textForLikes: TextView = itemView.findViewById(R.id.forBtnLike)
-        val textForComments: TextView = itemView.findViewById(R.id.forBtnComment)
-        val textForShares: TextView = itemView.findViewById(R.id.forBtnShare)
-        val btnLikes: Button = itemView.findViewById(R.id.btnLike)
-        val btnComments: Button = itemView.findViewById(R.id.btnComment)
-        val btnShares: Button = itemView.findViewById(R.id.btnShare)
-
-    }
-
-    class EventPostUI(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        val icon: ImageView = itemView.findViewById(R.id.iconEventPost)
-        val date: TextView = itemView.findViewById(R.id.dateEventPost)
-        val author: TextView = itemView.findViewById(R.id.authorEventPost)
-        val text: TextView = itemView.findViewById(R.id.textEventPost)
-        val textForLikes: TextView = itemView.findViewById(R.id.forBtnLikeEventPost)
-        val textForComments: TextView = itemView.findViewById(R.id.forBtnCommentEventPost)
-        val textForShares: TextView = itemView.findViewById(R.id.forBtnShareEventPost)
-        val btnLikes: Button = itemView.findViewById(R.id.btnLikeEventPost)
-        val btnComments: Button = itemView.findViewById(R.id.btnCommentEventPost)
-        val btnShares: Button = itemView.findViewById(R.id.btnShareEventPost)
-        val btnLocation: Button = itemView.findViewById(R.id.btnMapEventPost)
-    }
-
-    class PromotionPostUI(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val icon: ImageView = itemView.findViewById(R.id.iconPromoPost)
-        val date: TextView = itemView.findViewById(R.id.datePromoPost)
-        val author: TextView = itemView.findViewById(R.id.authorPromoPost)
-        val text: TextView = itemView.findViewById(R.id.textPromoPost)
-        val textForLikes: TextView = itemView.findViewById(R.id.forBtnLikePromoPost)
-        val textForComments: TextView = itemView.findViewById(R.id.forBtnCommentPromoPost)
-        val textForShares: TextView = itemView.findViewById(R.id.forBtnSharePromoPost)
-        val btnLikes: Button = itemView.findViewById(R.id.btnLikePromoPost)
-        val btnComments: Button = itemView.findViewById(R.id.btnCommentPromoPost)
-        val btnShares: Button = itemView.findViewById(R.id.btnSharePromoPost)
-        val imageBtnLinks: ImageButton = itemView.findViewById(R.id.linkPromoPost)
-
-    }
-
-    class RePostUI(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val icon: ImageView = itemView.findViewById(R.id.iconRePostUser)
-        val date: TextView = itemView.findViewById(R.id.dateRePostUser)
-        val author: TextView = itemView.findViewById(R.id.authorRePostUser)
-        val textForLikes: TextView = itemView.findViewById(R.id.forBtnLikeRePostUser)
-        val textForComments: TextView = itemView.findViewById(R.id.forBtnCommentRePostUser)
-        val textForShares: TextView = itemView.findViewById(R.id.forBtnShareRePostUser)
-        val btnLikes: Button = itemView.findViewById(R.id.btnLikeRePostUser)
-        val btnComments: Button = itemView.findViewById(R.id.btnCommentRePostUser)
-        val btnShares: Button = itemView.findViewById(R.id.btnShareRePostUser)
-
-        val iconRePost: ImageView = itemView.findViewById(R.id.iconRePost)
-        val dateRePost: TextView = itemView.findViewById(R.id.dateRePost)
-        val authorRePost: TextView = itemView.findViewById(R.id.authorRePost)
-        val textRePost: TextView = itemView.findViewById(R.id.textRePost)
-        val imageBtnLinksRePost: ImageButton = itemView.findViewById(R.id.linkRePost)
-    }
-
-    class VideoPostUI(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val icon: ImageView = itemView.findViewById(R.id.iconPostWithVideo)
-        val date: TextView = itemView.findViewById(R.id.datePostWithVideo)
-        val author: TextView = itemView.findViewById(R.id.authorPostWithVideo)
-        val text: TextView = itemView.findViewById(R.id.textPostWithVideo)
-        val textForLikes: TextView = itemView.findViewById(R.id.forBtnLikePostWithVideo)
-        val textForComments: TextView = itemView.findViewById(R.id.forBtnCommentPostWithVideo)
-        val textForShares: TextView = itemView.findViewById(R.id.forBtnSharePostWithVideo)
-        val btnLikes: Button = itemView.findViewById(R.id.btnLikePostWithVideo)
-        val btnComments: Button = itemView.findViewById(R.id.btnCommentPostWithVideo)
-        val btnShares: Button = itemView.findViewById(R.id.btnSharePostWithVideo)
-        val imageBtnLinks: ImageButton = itemView.findViewById(R.id.videoLinkPostWithVideo)
-    }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         when (viewType) {
@@ -136,7 +55,9 @@ class AdapterPosts(private val items: List<StandardPost>) :
 
         val post = items[position]
 
-        standPost.icon.setBackgroundResource(post.icon)
+        if (post.icon == 24) {
+            standPost.icon.setBackgroundResource(R.drawable.ic_baseline_fingerprint_24)
+        }
         standPost.date.text = post.dateForPost
         standPost.author.text = post.author
         standPost.text.text = post.content
@@ -250,7 +171,9 @@ ${stPost.content}""".trimIndent()
 
         val post = items[position]
 
-        eventPost.icon.setBackgroundResource(post.icon)
+        if (post.icon == 24) {
+            eventPost.icon.setBackgroundResource(R.drawable.ic_baseline_fingerprint_24)
+        }
         eventPost.date.text = post.dateForPost
         eventPost.author.text = post.author
         eventPost.text.text = post.content
@@ -375,7 +298,9 @@ ${stPost.linkLocation}""".trimIndent()
 
         val post = items[position]
 
-        promoPost.icon.setBackgroundResource(post.icon)
+        if (post.icon == 24) {
+            promoPost.icon.setBackgroundResource(R.drawable.ic_baseline_fingerprint_24)
+        }
         promoPost.date.text = post.dateForPost
         promoPost.author.text = post.author
         promoPost.text.text = post.content
@@ -500,7 +425,9 @@ ${stPost.linkLocation}""".trimIndent()
 
         val post = items[position]
 
-        videoPost.icon.setBackgroundResource(post.icon)
+        if (post.icon == 24) {
+            videoPost.icon.setBackgroundResource(R.drawable.ic_baseline_fingerprint_24)
+        }
         videoPost.date.text = post.dateForPost
         videoPost.author.text = post.author
         videoPost.text.text = post.content
@@ -625,11 +552,15 @@ ${stPost.linkVideo}""".trimIndent()
 
         val post = items[position]
 
-        rePost.icon.setBackgroundResource(post.icon)
+        if (post.icon == 24) {
+            rePost.icon.setBackgroundResource(R.drawable.ic_baseline_fingerprint_24)
+        }
         rePost.date.text = post.dateForPost
         rePost.author.text = post.author
         rePost.textRePost.text = post.rePostText
-        rePost.iconRePost.setBackgroundResource(post.icon)
+        if (post.rePostIcon == 24) {
+            rePost.iconRePost.setBackgroundResource(R.drawable.ic_baseline_fingerprint_24)
+        }
         rePost.dateRePost.text = post.dateForPost
         rePost.authorRePost.text = post.author
 
